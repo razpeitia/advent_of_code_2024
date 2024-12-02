@@ -9,3 +9,4 @@ For the second part use a dict and count the elements.
 
 For the first part, implement the rules and check that.
 For the second part, again just implement the rules, don't try to optimize or anything.
+
