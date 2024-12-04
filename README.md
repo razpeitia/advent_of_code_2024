@@ -14,3 +14,8 @@ For the second part, again just implement the rules, don't try to optimize or an
 
 First part, use re.findall  
 Second part, use re.findall and a flag
+
+### Day 3
+
+First part, for each point i,j generate all combinations and count, don't forget that you are counting twice in this approach  
+Second part, for each point just get the diagonals and check if both are MAS or SAM
