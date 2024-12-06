@@ -24,3 +24,8 @@ Second part, for each point just get the diagonals and check if both are MAS or 
 
 First part, build an `rule_index` then for each pair `a[i], a[i+1]` check if a rule exists, if all pairs get passes the rule check then it's a valid order, then just get the middle element and sum it.  
 Second part, to fix the order just implement a sorting algorithm and use the `rule_index` to check if you should swap it or not.
+
+### Day 6
+
+First part, just check the rules as stated.
+Secord part, slow brute force solution, just put a obstanble in each possible place and check if it creates a loop.
