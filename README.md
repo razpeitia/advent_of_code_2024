@@ -27,5 +27,10 @@ Second part, to fix the order just implement a sorting algorithm and use the `ru
 
 ### Day 6
 
-First part, just check the rules as stated.
+First part, just check the rules as stated.  
 Secord part, slow brute force solution, just put a obstanble in each possible place and check if it creates a loop.
+
+### Day 7
+
+First part, brute force it.  
+Secord part, also brute force it.
