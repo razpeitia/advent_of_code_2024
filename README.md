@@ -34,3 +34,8 @@ Secord part, slow brute force solution, just put a obstanble in each possible pl
 
 First part, brute force it.  
 Secord part, also brute force it.
+
+### Day 8
+
+First part, this one was hard to grasp but relatively easy to implement. Given 2 points you can get the difference in each axe and we call that `dx` and `dy` and then you can generate 2 collinear points, check if those are within the grid and add them to a set. The result will be set size.  
+Secord part, almost like part 1 the only difference is that once you find a collinear point you want to generate all multiples of that point within the grid and don't forget to add all the antenas to the set to get the right number.
