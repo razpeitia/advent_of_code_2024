@@ -39,3 +39,8 @@ Secord part, also brute force it.
 
 First part, this one was hard to grasp but relatively easy to implement. Given 2 points you can get the difference in each axe and we call that `dx` and `dy` and then you can generate 2 collinear points, check if those are within the grid and add them to a set. The result will be set size.  
 Secord part, almost like part 1 the only difference is that once you find a collinear point you want to generate all multiples of that point within the grid and don't forget to add all the antenas to the set to get the right number.
+
+### Day 9
+
+First part, I keep 2 pointers left and right, and I build a state machine that computes the hash on the fly. I forgot to compute the remaining! But that was easy to fix  
+Second part, I forgot about memory and I build a list just like in the example, for this one I build 2 indexes one to keep the position and size of the file base on the id and the other one to keep track of the free spaces. I had to update the free index once I moved the file.
