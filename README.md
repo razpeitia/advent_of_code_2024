@@ -59,3 +59,7 @@ Second part, I forgot about memory and I build a list just like in the example, 
 First part, for each 0 in the grid just count the amount of 9s that you can reach using dfs or bfs just make sure that the neighbors are consecutive numbers.
 
 Second part, for each 0 calculate the rate and add it, to calculate the rate make another grid to keep track the number of paths up to that level, then do a bfs by level and update the number of paths in the new grid, once you finish the process check each element in the grid and if it's 9 sum the value in the rate grid.
+
+### Day 11
+
+Don't let the description fool you, the sequence part is not needed, you can use a dictionary and count the frequency and at the end of all the iterations all you have to do is to sum all frequencies.
