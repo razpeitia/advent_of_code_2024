@@ -63,3 +63,9 @@ Second part, for each 0 calculate the rate and add it, to calculate the rate mak
 ### Day 11
 
 Don't let the description fool you, the sequence part is not needed, you can use a dictionary and count the frequency and at the end of all the iterations all you have to do is to sum all frequencies.
+
+### Day 12
+
+First part, there is not a lot to think of, for each region just count the area and sum the perimeter.
+
+Second part, I tried to solve this one without looking at other solutions and I failed, I even got a solution that passed all the examples and even more examples but failed in the large input then after looking at the comments in reddit I found that the numbers of sides is the same in this case as the number of corners and you can have 2 kind of corners, external and internal. After implementing that I finally got the right answer.ß

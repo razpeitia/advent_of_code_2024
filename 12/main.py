@@ -38,36 +38,43 @@ def part1(filename):
     print(ans)
     return ans
 
+def count_corners(grid, m, n, i, j, region):
+    sides = []
+    counter = 0
+    #             0       1       2        3        4       5         6        7
+    positions = [(0, 1), (1, 0), (-1, 0), (0, -1), (1, 1), (-1, -1), (1, -1), (-1, 1)]
+    for di, dj in positions:
+        ni, nj = i+di, j+dj
+        sides.append(not ((0 <= ni < m) and (0 <= nj < n) and region == grid[ni][nj]))
+    if (sides[0] == 1 and sides[1] == 1) or (sides[0] == 0 and sides[1] == 0 and sides[4] == 1):
+        counter += 1
+    if (sides[0] == 1 and sides[2] == 1) or (sides[0] == 0 and sides[2] == 0 and sides[7] == 1):
+        counter += 1
+    if (sides[3] == 1 and sides[1] == 1) or (sides[3] == 0 and sides[1] == 0 and sides[6] == 1):
+        counter += 1
+    if (sides[3] == 1 and sides[2] == 1) or (sides[3] == 0 and sides[2] == 0 and sides[5] == 1):
+        counter += 1
+    return counter
+
 def calculate2(grid, m, n, i, j, visited):
     from collections import deque
     region = grid[i][j]
     # right, down, up, left
     positions = [(0, 1), (1, 0), (-1, 0), (0, -1)]
     queue = deque([(i, j)])
-    sides = {}
+    corners = 0
     area = 0
-    perimeter = 0
     while queue:
         i, j = queue.popleft()
         if (i, j) not in visited:
             area += 1
             visited.add((i, j))
-            for di, dj in positions:
-                ni, nj = i + di, j + dj
-                if not ((0 <= ni < m) and (0 <= nj < n) and region == grid[ni][nj] and (i,j,di,dj) not in sides):
-                    sides[i,j,di,dj] = 1
-                    sides[i+di,j+dj,-di,-dj] = 1
-                    if di:
-                        if (i,j+1,di,dj) not in sides and (i,j-1,di,dj) not in sides:
-                            perimeter += 1
-                    else:
-                        if (i+1,j,di,dj) not in sides and (i-1,j,di,dj) not in sides:
-                            perimeter += 1
+            corners += count_corners(grid, m, n, i, j, region)
             for di, dj in positions:
                 ni, nj = i + di, j + dj
                 if (0 <= ni < m) and (0 <= nj < n) and region == grid[ni][nj] and (ni, nj) not in visited:
                     queue.append((ni, nj))
-    return [area, perimeter]
+    return [area, corners]
 
 def part2(filename):
     grid = read_file(filename)
