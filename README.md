@@ -68,4 +68,8 @@ Don't let the description fool you, the sequence part is not needed, you can use
 
 First part, there is not a lot to think of, for each region just count the area and sum the perimeter.
 
-Second part, I tried to solve this one without looking at other solutions and I failed, I even got a solution that passed all the examples and even more examples but failed in the large input then after looking at the comments in reddit I found that the numbers of sides is the same in this case as the number of corners and you can have 2 kind of corners, external and internal. After implementing that I finally got the right answer.ß
+Second part, I tried to solve this one without looking at other solutions and I failed, I even got a solution that passed all the examples and even more examples but failed in the large input then after looking at the comments in reddit I found that the numbers of sides is the same in this case as the number of corners and you can have 2 kind of corners, external and internal. After implementing that I finally got the right answer.
+
+### Day 13
+
+It's only a system of equations with 2 variables, if the solution is not an integer then it's not a valid solution.
