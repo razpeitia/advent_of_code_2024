@@ -73,3 +73,9 @@ Second part, I tried to solve this one without looking at other solutions and I 
 ### Day 13
 
 It's only a system of equations with 2 variables, if the solution is not an integer then it's not a valid solution.
+
+### Day 14
+
+For the first part, just brute force it.
+
+For the second part, I had to use pygame and see if there was a pattern after several runs it turns out that the christmast tree is surrounded by robots so this made the search much more easier.
