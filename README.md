@@ -79,3 +79,7 @@ It's only a system of equations with 2 variables, if the solution is not an inte
 For the first part, just brute force it.
 
 For the second part, I had to use pygame and see if there was a pattern after several runs it turns out that the christmast tree is surrounded by robots so this made the search much more easier.
+
+### Dat 15
+
+Just implement the rules, there is not a lot to add.
