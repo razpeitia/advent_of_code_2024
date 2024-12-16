@@ -13,28 +13,37 @@ def neighbors(i, j, di, dj):
             ((i, j), ROTATE_COUNTERCLOCKWISE[di, dj], 1000)]
 
 def bfs(grid, s, direction, e):
-    queue = deque([(s, direction, 0)])
+    from collections import defaultdict
+    queue = deque([([(s, direction)], 0)])
     visited = {}
     min_score = float("inf")
+    paths = defaultdict(list)
     while queue:
-        ((i, j), (di, dj), score) = queue.popleft()
+        (path, score) = queue.popleft()
+        (i, j), (di, dj) = path[-1]
         key = ((i, j), (di, dj))
         visited[key] = score if key not in visited else min(visited[key], score)
         if (i, j) == e:
             min_score = min(min_score, score)
-        for ((i, j), (di, dj), weigth) in neighbors(i, j, di, dj):
-            key = ((i, j), (di, dj))
-            if grid[i][j] != '#':
+            paths[min_score].append(path)
+        for ((ni, nj), (ndi, ndj), weigth) in neighbors(i, j, di, dj):
+            key = ((ni, nj), (ndi, ndj))
+            if grid[ni][nj] != '#':
                 new_score = score + weigth
-                if key not in visited:
+                if key not in visited or new_score <= visited[key]:
                     visited[key] = new_score
-                    queue.append(((i, j), (di, dj), new_score))
-                elif visited[key] > new_score:
-                    visited[key] = new_score
-                    queue.append(((i, j), (di, dj), new_score))
-    return min_score
+                    queue.append((path + [((ni, nj), (ndi, ndj))], new_score))
+    tiles = set()
+    for path in paths[min_score]:
+        cost = 0
+        for ((p1, _), (p2, _)) in zip(path[:-1], path[1:]):
+            cost += 1 if p1 != p2 else 1000
+        if cost == min_score:
+            for (p, _) in path:
+                tiles.add(p)
+    return min_score, len(tiles)
 
-def part1(filename):
+def main(filename):
     grid = read_file(filename)
     m = len(grid)
     n = len(grid[0])
@@ -43,20 +52,10 @@ def part1(filename):
     ans = bfs(grid, s, (0, 1), e)
     print(ans)
     return ans
-    
-
-def part2(filename):
-    pass
-
-def main(filename, part):
-    if part == 1:
-        return part1(filename)
-    elif part == 2:
-        return part2(filename)
 
 
 if __name__ == "__main__":
-    assert 7036 == main("example1.txt", 1)
-    assert 11048 == main("example2.txt", 1)
-    assert 73404 == main("input.txt", 1)
+    assert (7036, 45) == main("example1.txt")
+    assert (11048, 64) == main("example2.txt")
+    assert (73404, 449) == main("input.txt")
 
