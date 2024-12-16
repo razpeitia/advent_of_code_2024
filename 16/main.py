@@ -25,7 +25,7 @@ def bfs(grid, s, direction, e):
         visited[key] = score if key not in visited else min(visited[key], score)
         if (i, j) == e:
             min_score = min(min_score, score)
-            paths[min_score].append(path)
+            paths[score].append(path)
         for ((ni, nj), (ndi, ndj), weigth) in neighbors(i, j, di, dj):
             key = ((ni, nj), (ndi, ndj))
             if grid[ni][nj] != '#':
@@ -35,12 +35,8 @@ def bfs(grid, s, direction, e):
                     queue.append((path + [((ni, nj), (ndi, ndj))], new_score))
     tiles = set()
     for path in paths[min_score]:
-        cost = 0
-        for ((p1, _), (p2, _)) in zip(path[:-1], path[1:]):
-            cost += 1 if p1 != p2 else 1000
-        if cost == min_score:
-            for (p, _) in path:
-                tiles.add(p)
+        for (p, _) in path:
+            tiles.add(p)
     return min_score, len(tiles)
 
 def main(filename):
