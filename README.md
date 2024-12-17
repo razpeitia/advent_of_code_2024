@@ -87,3 +87,11 @@ Just implement the rules, there is not a lot to add.
 ### Day 16
 
 I just brute force it with bfs
+
+
+### Day 17
+
+For the first part it was just to implement this state machine and keep track of the output.
+
+For the second part I wasn't able to get it done with brute force, I gave up after I exahusted the 32-bit space.
+Then I look at other approaches and I settle for a simple dfs, I think the hardest part was to compare the right value for that to recurse.

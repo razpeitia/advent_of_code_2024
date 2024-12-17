@@ -58,52 +58,34 @@ def part1(filename):
     print(ans)
     return ans
 
-def execute2(program, a, b, c):
-    n = len(program)
-    pc = 0
-    output = []
-    while 0 <= pc < n:
-        opcode = program[pc]
-        operand = program[pc+1]
-        pc += 2
-        if opcode == 0:
-            operand = combo_operand(operand, a, b, c)
-            a = a // (1 << operand)
-        elif opcode == 1:
-            b = b ^ operand
-        elif opcode == 2:
-            operand = combo_operand(operand, a, b, c)
-            b = operand % 8
-        elif opcode == 3:
-            if a:
-                pc = operand
-        elif opcode == 4:
-            b = b ^ c
-        elif opcode == 5:
-            operand = combo_operand(operand, a, b, c)
-            output.append(operand % 8)
-            if len(output) > len(program):
-                return False
-            elif len(output) <= len(program) and output[-1] != program[len(output)-1]:
-                return False
-        elif opcode == 6:
-            operand = combo_operand(operand, a, b, c)
-            b = a // (1 << operand)
-        elif opcode == 7:
-            operand = combo_operand(operand, a, b, c)
-            c = a // (1 << operand)
-    return output == program
+def step(a):
+    b = a % 8
+    b = b ^ 7
+    c = a // (1 << b)
+    a = a // 8
+    b = b ^ c
+    b = b ^ 7
+    return b % 8
+
+def dfs(program, a, depth, ans):
+    if depth == len(program) - 1:
+        result = execute(program, a, 0, 0)
+        result = [int(x) for x in result.split(",")]
+        if result == program:
+            ans.append(a)
+        return
+    if step(a) == program[-(depth + 1)]:
+        for i in range(8):
+            dfs(program, (a * 8) + i, depth + 1, ans)
 
 def part2(filename):
-    a, b, c, program = read_file(filename)
-    a = 0
-    while True:
-        if (a & (a - 1)) == 0:
-            print(a)
-        if execute2(program, a, b, c):
-            print(a)
-            return a
-        a += 1
+    _, _, _, program = read_file(filename)
+    ans = []
+    for i in range(8):
+        dfs(program, i, 0, ans)
+    print(min(ans))
+    return min(ans)
+    
 
 def main(filename, part):
     if part == 1:
@@ -117,4 +99,3 @@ if __name__ == "__main__":
     main("input.txt", 1)
     main("example2.txt", 2)
     main("input.txt", 2)
-
