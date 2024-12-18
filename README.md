@@ -95,3 +95,7 @@ For the first part it was just to implement this state machine and keep track of
 
 For the second part I wasn't able to get it done with brute force, I gave up after I exahusted the 32-bit space.
 Then I look at other approaches and I settle for a simple dfs, I think the hardest part was to compare the right value for that to recurse.
+
+### Day 18
+
+For the first part is was just simple bfs keeping the path, for the second part I reused the first part until I get no answer back.
