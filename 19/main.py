@@ -26,7 +26,7 @@ def part1(filename):
     patterns, designs = read_file(filename)
     ans = 0
     cache = {}
-    for i, design in enumerate(designs):
+    for design in designs:
         if is_possible(patterns, design, cache):
             ans += 1
     print(ans)
