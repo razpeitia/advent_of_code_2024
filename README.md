@@ -99,3 +99,8 @@ Then I look at other approaches and I settle for a simple dfs, I think the harde
 ### Day 18
 
 For the first part is was just simple bfs keeping the path, for the second part I reused the first part until I get no answer back.
+
+### Day 19
+
+For the first part I was able to get the answer with some basic brute force and then adding a caching layer.
+Similar for the second part.

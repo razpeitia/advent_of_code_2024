@@ -3,33 +3,24 @@ from functools import cache
 def read_file(filename):
     with open(filename, 'rt') as f:
         [patterns, designs] = f.read().split("\n\n")
-        patterns = [x.strip() for x in patterns.split(",")]
+        patterns = tuple([x.strip() for x in patterns.split(",")])
         designs = [x.strip() for x in designs.splitlines()]
         return patterns, designs
 
-
+@cache
 def is_possible(patterns, design, cache):
     if not design:
         return True
-    if design in cache:
-        return cache[design]
     for pattern in patterns:
-        if design.startswith(pattern):
-            suffix = design[len(pattern):]
-            if is_possible(patterns, suffix, cache):
-                cache[suffix] = True
-                return True
-            else:
-                cache[suffix] = False
-    cache[design] = False
+        if design.startswith(pattern) and is_possible(patterns, design.removeprefix(pattern)):
+            return True
     return False
 
 def part1(filename):
     patterns, designs = read_file(filename)
     ans = 0
-    cache = {}
     for design in designs:
-        if is_possible(patterns, design, cache):
+        if is_possible(patterns, design):
             ans += 1
     print(ans)
     return ans
@@ -47,7 +38,6 @@ def count_ways(patterns, design):
 
 def part2(filename):
     patterns, designs = read_file(filename)
-    patterns = tuple(patterns)
     ans = 0
     for design in designs:
         ans += count_ways(patterns, design)
