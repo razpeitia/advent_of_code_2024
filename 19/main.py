@@ -8,7 +8,7 @@ def read_file(filename):
         return patterns, designs
 
 @cache
-def is_possible(patterns, design, cache):
+def is_possible(patterns, design):
     if not design:
         return True
     for pattern in patterns:
