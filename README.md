@@ -104,3 +104,7 @@ For the first part is was just simple bfs keeping the path, for the second part 
 
 For the first part I was able to get the answer with some basic brute force and then adding a caching layer.
 Similar for the second part.
+
+### Day 20
+
+For the first part, just compute the distance from starting from the end, keep a table with point and distance and run througth all possible combinations which distance (manhattan distance) is equal to 2 for the first part and less or equal than 20 for the second part.
