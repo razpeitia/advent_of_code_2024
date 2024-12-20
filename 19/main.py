@@ -1,3 +1,5 @@
+from functools import cache
+
 def read_file(filename):
     with open(filename, 'rt') as f:
         [patterns, designs] = f.read().split("\n\n")
@@ -32,8 +34,25 @@ def part1(filename):
     print(ans)
     return ans
 
+@cache
+def count_ways(patterns, design):
+    if not design:
+        return 1
+    count = 0
+    for pattern in patterns:
+        if design.startswith(pattern):
+            count += count_ways(patterns, design.removeprefix(pattern))
+    return count
+
+
 def part2(filename):
-    pass
+    patterns, designs = read_file(filename)
+    patterns = tuple(patterns)
+    ans = 0
+    for design in designs:
+        ans += count_ways(patterns, design)
+    print(ans)
+    return ans
 
 def main(filename, part):
     if part == 1:
@@ -45,4 +64,5 @@ def main(filename, part):
 if __name__ == "__main__":
     assert 6 == main("example.txt", 1)
     main("input.txt", 1)
-
+    assert 16 == main("example.txt", 2)
+    main("input.txt", 2)
