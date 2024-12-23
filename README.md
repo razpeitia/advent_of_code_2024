@@ -108,3 +108,11 @@ Similar for the second part.
 ### Day 20
 
 For the first part, just compute the distance from starting from the end, keep a table with point and distance and run througth all possible combinations which distance (manhattan distance) is equal to 2 for the first part and less or equal than 20 for the second part.
+
+### Day 21
+
+Not solved yet
+
+### Day 22
+
+The first part just implement everything as it says and for the second part you just have to use a dict to store the first sequences in each secret number and keep the sum, and finally you only need to check the max in the dict and that's the result.
