@@ -1,5 +1,4 @@
 from collections import defaultdict
-from itertools import combinations
 
 def read_file(filename):
     graph = defaultdict(list)
@@ -60,7 +59,6 @@ def main(filename, part):
 if __name__ == "__main__":
     assert 7 == main("example.txt", 1)
     main("input.txt", 1)
-    # assert 'co,de,ka,ta' == main("example.txt", 2)
-    main("example.txt", 2)
+    assert 'co,de,ka,ta' == main("example.txt", 2)
     main("input.txt", 2)
 
