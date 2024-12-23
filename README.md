@@ -116,3 +116,7 @@ Not solved yet
 ### Day 22
 
 The first part just implement everything as it says and for the second part you just have to use a dict to store the first sequences in each secret number and keep the sum, and finally you only need to check the max in the dict and that's the result.
+
+### Day 23
+
+For the first part I just brute force it, nothing fancy, as for the second part it was a greedy approach were I would build on top of previous sets and boy it's slow, takes about 44 seconds in the M1.
