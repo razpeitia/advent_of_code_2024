@@ -14,19 +14,7 @@ def encode_instructions(path):
         instructions.append(table[a,b])
     return ''.join(instructions) + "A"
 
-def all_paths(start):
-    """
-    +---+---+---+
-    | 7 | 8 | 9 |
-    +---+---+---+
-    | 4 | 5 | 6 |
-    +---+---+---+
-    | 1 | 2 | 3 |
-    +---+---+---+
-        | 0 | A |
-        +---+---+
-    """
-    grid = ["789", "456", "123", " 0A"]
+def all_paths(grid, start):
     m, n = len(grid), len(grid[0])
     queue = deque([[start]])
     visited = {start: []}
@@ -45,21 +33,21 @@ def all_paths(start):
     paths = {grid[k[0]][k[1]]: [encode_instructions(p) for p in v] for k, v in paths.items()}
     return paths
 
-def get_all_paths():
+def get_all_paths(grid):
     table = {}
-    grid = ["789", "456", "123", " 0A"]
-    for i in range(4):
-        for j in range(3):
+    for i in range(len(grid)):
+        for j in range(len(grid[0])):
             if grid[i][j] != " ":
-                for k, v in all_paths((i, j)).items():
+                for k, v in all_paths(grid, (i, j)).items():
                     table[grid[i][j] + k] = v
     return table
 
 def part1(filename):
     codes = read_file(filename)
-    table1 = get_all_paths()
-    for k, v in sorted(table1.items()):
-        print(k, v)
+    table1 = get_all_paths(["789", "456", "123", " 0A"])
+    table2 = get_all_paths([" ^A", "<v>"])
+    print(table1)
+    print(table2)
 
 def part2(filename):
     pass
