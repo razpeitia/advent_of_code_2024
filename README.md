@@ -129,3 +129,7 @@ Getting the first 6 gates that are relatively easy just check:
 3 gates, if there an output for z with no XOR.
 Then fix the input. By swapping these 6 gates.
 Then calculate the bit difference and check which bit is different, eg. if you get the 30 bit wrong, it's the 45-30=15 bit that there is a problem just swap the outputs of X15 AND Y15 and X15 XOR Y15.
+
+### Day 25
+
+For the first part just brute force it.
