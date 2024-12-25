@@ -49,8 +49,15 @@ def get_number(initial, letter):
 
 def part2(filename):
     initial, gates = read_file(filename)
-    
+    x = get_number(initial, 'x')
+    y = get_number(initial, 'y')
+    ans = process(initial, gates)
+    for i, (a, b) in enumerate(zip(bin(ans)[2:], bin(x+y)[2:])):
+        if a != b:
+            print(i)
 
+    return
+    
     # Normalize gates X and Y
     for output in gates:
         if gates[output][0] > gates[output][2]:
@@ -65,10 +72,6 @@ def part2(filename):
     t1 = {}
     t2 = {}
     cout = {}
-
-    if ' '.join(gates["z00"]) != "X00 XOR Y00":
-        wrong_chips.append("z00")
-        
     
     # Check the next 44 bits for a full adder
     # X XOR Y -> T0
@@ -82,29 +85,12 @@ def part2(filename):
             t2[int(v[0][1:])] = k
         if v[0][0] == 'x' and v[1] == 'XOR' and v[2][0] == 'y' and v[0][1:] == v[2][1:]:
             t0[int(v[0][1:])] = k
+    
     for k, v in gates.items():
-        if k != 'z00' and k[0] == 'z' and k[1:].isdigit() and v[1] == 'XOR':
-            n = int(k[1:])
-            cin = v[0] if v[0] != t0[n] else v[2]
-            cout[n-1] = cin
-            z[n] = (t0[n], cin)
-        if k != 'z00' and k[0] == 'z' and k[1:].isdigit() and v[1] == 'AND':
-            n = int(k[1:])
-            cin = v[0] if v[0] != t0[n] else v[2]
-            t1[n] = k
-    reverse_cout = {v: k for k, v in cout.items()}
-    for k, v in gates.items():
-        if v[1] == "OR":
-            if k not in reverse_cout:
-                print(' '.join(gates[k]), "->", k)
-    print(len(t0))
-    print(len(t1))
-    print(len(t2))
-    print(len(cout))
-    # print(' '.join(gates[t0[1]]), "->", t0[1])
-    # print(t1.get(1))
-    # print(' '.join(gates[t2[1]]), "->", t2[1])
-    # print(' '.join(gates[cout[1]]), "->", cout[1])
+        if v[1] == "XOR" and (k[0] != 'z' and v[0][0] != 'x'):
+            print(' '.join(v), "->", k)
+        if k != 'z45' and k[0] == 'z' and v[1] != 'XOR':
+            print(' '.join(v), "->", k)
 
 
 

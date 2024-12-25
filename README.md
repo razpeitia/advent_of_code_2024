@@ -120,3 +120,12 @@ The first part just implement everything as it says and for the second part you 
 ### Day 23
 
 For the first part I just brute force it, nothing fancy, as for the second part it was a greedy approach were I would build on top of previous sets and boy it's slow, takes about 44 seconds in the M1.
+
+### Day 24
+
+For the first part I just implemented what was required, for part 2 it was manually adjusting.
+Getting the first 6 gates that are relatively easy just check:
+3 gates, if there is an XOR with with no z as output or x and y as input then it's wrong.
+3 gates, if there an output for z with no XOR.
+Then fix the input. By swapping these 6 gates.
+Then calculate the bit difference and check which bit is different, eg. if you get the 30 bit wrong, it's the 45-30=15 bit that there is a problem just swap the outputs of X15 AND Y15 and X15 XOR Y15.
