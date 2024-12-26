@@ -111,7 +111,8 @@ For the first part, just compute the distance from starting from the end, keep a
 
 ### Day 21
 
-Not solved yet
+For the first part I just brute force it, but it took too much time and effort.
+For the second part I tried to brute force it but I ran out of memory by iteration 20, so I decided to check other solutions and I finally got it by understanding a few other solutions. You need a base case (if the sequence is empty), determine which table are you going to use since that would get you all shortest paths, then calculate the src and the dst keys, if the depth is 0 the min length is just the length of any shortest path, if the depth is non-zero then you have check every single path and check which gives you the min, finally you recurse to the next sequence by simply passing the right params.
 
 ### Day 22
 
